@@ -1,4 +1,3 @@
-.container{
-    display: flex;
-    justify-content: center;
+.movies .item img{
+    width: 200px;
 }

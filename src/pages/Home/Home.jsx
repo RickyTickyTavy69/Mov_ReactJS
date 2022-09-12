@@ -24,11 +24,11 @@ const Home = () => {
         <>
             {<section className={s.movies}>
             {popularMovies && popularMovies.map((movie) => {
-                console.log(`${movie.poster_path}`)
+
                 return(
                     <article className={s.item}>
                         <div>bild</div>
-                        <img src={`${configData["API_LINK"]}${movie.poster_path}`} alt=""/>
+                        <img src={`${configData.IMG_URL}${movie.poster_path}`} alt=""/>
                     </article>
                 )
             })}
