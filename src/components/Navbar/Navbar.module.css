@@ -1,0 +1,18 @@
+.headerNavbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #1A2634;
+    height: 50px;
+}
+
+.searchField {
+    justify-self: start;
+    height: 18px;
+    border: 0.5px solid lightgrey;
+    align-self: center;
+    border-radius: 3px;
+}
+
+.h1Logo {
+    color: #fff;
+}
