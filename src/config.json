@@ -1,5 +1,6 @@
 {
   "API_LINK": "https://api.themoviedb.org/3/movie/popular?api_key=dd7ac1f247ec64e83419d95ecc19b3b3&language=de-DE&page=1",
-  "BASE_URL": "https://api.themoviedb.org",
-  "IMG_URL": "https://image.tmdb.org/t/p/original/"
+  "BASE_URL": "https://api.themoviedb.org/3/movie/",
+  "IMG_URL": "https://image.tmdb.org/t/p/original/",
+  "API_KEY": "api_key=dd7ac1f247ec64e83419d95ecc19b3b3&language=de-DE&page=1"
 }
