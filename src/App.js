@@ -1,16 +1,17 @@
 import Home from "./pages/Home/Home";
+import Detail from "./pages/Detail/Detail";
 import "./app.css";
 import Navbar from "./components/Navbar/Navbar";
 import GenreContext from "./context/context";
 import useGetGenresArray from "./hooks/useGetGenresArray";
 import {useState, useEffect} from "react";
-import MovieDetail from "./pages/MovieDetails/MovieDetail";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App() {
 
   const [genresArray, setGenresArray] = useState([]);
   const getGenresArray = useGetGenresArray();
+  const [nameToSearch, setNameToSearch] = useState("")
 
   useEffect(() => {
 
@@ -25,13 +26,15 @@ function App() {
 
 
   return (
-      <GenreContext.Provider value={{genresArray}}>
+      <GenreContext.Provider value={{genresArray, nameToSearch, setNameToSearch}}>
         <div className="App">
           <Router>
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/detail/:id" element={<Detail/>}/> {/*in die Route wird ein query paramenter übergeben*/}
             </Routes>
+            {/*<Footer/>*/}
           </Router>
         </div>
       </GenreContext.Provider>

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import {useContext} from "react";
 import { Link } from "react-router-dom";
-import SearchMovies from "../searchmovies/SearchMovies";
+//import SearchMovies from "../searchmovies/SearchMovies";
+import GenreContext from "../../context/context";
 import style from './Navbar.module.css';
 
 
@@ -9,12 +10,17 @@ import style from './Navbar.module.css';
 
 const Navbar = (props) => {
 
+    const {setNameToSearch} = useContext(GenreContext);
+
     return (
         <>
             <nav className={style.headerNavbar}>
                 <Link to='/'><h1 className={style.h1Logo}><span>.</span>Mov</h1>  </Link>
-
-            </nav> <SearchMovies />
+                <div>
+                    <button >Search</button>
+                    <input type="text" placeholder="Search something here" onChange={(e) => setNameToSearch(e.target.value)} />
+                </div>
+            </nav>
         </>
     )
 
