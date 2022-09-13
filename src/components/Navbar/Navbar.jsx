@@ -10,10 +10,12 @@ import style from './Navbar.module.css';
 const Navbar = (props) => {
 
     return (
-        <nav className={style.headerNavbar}>
-            <Link to='/'><h1 className={style.h1Logo}><span>.</span>Mov</h1>  </Link>
-            <SearchMovies />
-        </nav>
+        <>
+            <nav className={style.headerNavbar}>
+                <Link to='/'><h1 className={style.h1Logo}><span>.</span>Mov</h1>  </Link>
+
+            </nav> <SearchMovies />
+        </>
     )
 
 }

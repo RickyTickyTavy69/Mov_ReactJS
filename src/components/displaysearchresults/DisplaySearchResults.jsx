@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const DisplaySearchResults = (props) => {
-
     // https://image.tmdb.org/t/p/w500/ + "poster_path": "/uQBbjrLVsUibWxNDGA4Czzo8lwz.jpg"
     // https://image.tmdb.org/t/p/original/ + "backdrop_path": "/5QEtCBM6aXHftr7sgFxxUUl9Ej8.jpg"
-
     // How to get trailer
     // https://www.themoviedb.org/talk/5451ec02c3a3680245005e3c?language=de-DE
     // http://api.themoviedb.org/3/movie/157336/videos?api_key=###

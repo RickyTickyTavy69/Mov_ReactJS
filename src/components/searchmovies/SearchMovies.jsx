@@ -9,6 +9,7 @@ const SearchMovies = (props) => {
     /*className={style.searchField}*/
     const [searchResults, setSearchResults] = useState([]);
     console.log(props.pNameToSearch);
+
     /*
     useEffect(() => {
         fetch({ urlData })
@@ -20,6 +21,7 @@ const SearchMovies = (props) => {
             })
     }, [urlData])
 */
+
     const fnSetUrlWithSearchWord = () => {
         console.log('Name to search = ', nameToSearch);
         // setUrlData(`https://api.themoviedb.org/3/search/movie?api_key=3f5bf13c3624e5013d3c11da8421e497&query=${nameToSearch}`);
@@ -55,6 +57,7 @@ const SearchMovies = (props) => {
                         <p>genre_ids : {item.genre_ids}</p>
                         <p>overview : {item.overview}</p>
                         <p>vote_average : {item.vote_average}</p>
+                        <hr />
                         <br />
                     </div>)
             }
