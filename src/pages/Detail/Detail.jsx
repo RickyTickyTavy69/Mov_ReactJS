@@ -4,10 +4,9 @@ import configData from '../../config.json';
 const Detail = () => {
 	return (
 		<>
-			<Navbar></Navbar>
-			<main>
-				<h1 className="detail__heading">TODO VARIABLE</h1>
-				<article className="details__container">
+			<section>
+				<h2 className="details__heading">TODO VARIABLE</h2>
+				<article className="details__grid">
 					<img className="details__poster">TODO Trailer</img>
 					<p className="details__release">Release Date</p>
 					<p className="details__release--data">TODO VARIABLE</p>
@@ -20,8 +19,7 @@ const Detail = () => {
 					<p className="details__trailer">Watch Trailer</p>
 					<p className="details__trailer--data">TODO Trailer</p>
 				</article>
-			</main>
-			<Footer></Footer>
+			</section>
 		</>
 	);
 };

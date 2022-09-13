@@ -5,7 +5,6 @@ import useGetGenre from '../../hooks/useGetGenre';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import MovieDetail from '../MovieDetails/MovieDetail';
-
 import genreContext from '../../context/context';
 
 const Home = () => {
@@ -40,29 +39,28 @@ const Home = () => {
 
 	return (
 		<>
-			{
-				<section className={s.movies}>
-					<h1>Popular Movies</h1>
-					{popularMovies &&
-						movieGenres.length &&
-						popularMovies.map((movie, idx) => {
-							return (
-								<article key={uuidv4()} className={s.item}>
-									<img
-										data-value={movie.id}
-										onClick={redirectToDetail}
-										src={`${configData.IMG_URL}${movie.poster_path}`}
-										alt=""
-									/>
-									<p>
-										{movie.release_date.split('-')[0]} - {movieGenres[idx].join(', ')}
-									</p>
-									<h2>{movie.title}</h2>
-								</article>
-							);
-						})}
-				</section>
-			}
+			<h2 className="home__heading">Popular Movies</h2>
+			<section className="home-grid">
+				{popularMovies &&
+					movieGenres.length &&
+					popularMovies.map((movie, idx) => {
+						return (
+							<article className="home-item" key={uuidv4()}>
+								<img
+									className="home__image"
+									data-value={movie.id}
+									onClick={redirectToDetail}
+									src={`${configData.IMG_URL}${movie.poster_path}`}
+									alt=""
+								/>
+								<p className="home__text--thin">
+									{movie.release_date.split('-')[0]} - {movieGenres[idx].join(', ')}
+								</p>
+								<h3 className="home__text--white">{movie.title}</h3>
+							</article>
+						);
+					})}
+			</section>
 		</>
 	);
 };

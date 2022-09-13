@@ -1,4 +1,4 @@
-.detail__container {
+/* .details__container {
 	display: grid;
 	grid-template-columns: 2fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -11,36 +11,36 @@
 		'details__poster details__trailer details__trailer'
 		'details__poster details__trailer--data details__trailer--data';
 }
-.release {
+.details__release {
 	grid-area: details__release;
 }
-.release__data {
+.details__release__data {
 	grid-area: details__release__data;
 }
-.genres {
+.details__genres {
 	grid-area: details__genres;
 }
-.genres__data {
+.details__genres__data {
 	grid-area: details__genres__data;
 }
-.overview {
+.details__overview {
 	grid-area: details__overview;
 }
-.overview__data {
+.details__overview__data {
 	grid-area: details__overview__data;
 }
-.average {
+.details__average {
 	grid-area: details__average;
 }
-.average__data {
+.details__average__data {
 	grid-area: details__average__data;
 }
-.watch {
+.details__trailer {
 	grid-area: details__trailer;
 }
-.trailer {
+.details__trailer--data {
 	grid-area: details__trailer--data;
 }
-.poster {
+.details__poster {
 	grid-area: details__poster;
-}
+} */
