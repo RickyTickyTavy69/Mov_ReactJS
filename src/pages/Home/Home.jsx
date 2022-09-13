@@ -82,7 +82,7 @@ const Home = () => {
 										alt=""
 									/>
 									<p>
-										{movie.release_date.split('-')[0]} - {movieGenres[idx].join(', ')}
+										{movie.release_date.split('-')[0]} - {movieGenres[idx]?.join(', ')}
 									</p>
 									<h2>{movie.title}</h2>
 								</article>
@@ -90,28 +90,37 @@ const Home = () => {
 						})}
 				</section>
 			}
-			{ nameToSearch && searchResults &&
-				searchResults.map((item) => {
-						return (
-							<div>
-								<p>id : {item.id}</p>
-								<p>original_title : {item.original_title}</p>
-								<p>title : {item.title}</p>
-								<p>backdrop_path : {item.backdrop_path}</p>
-								<img src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} />
-								<p>poster_path : {item.poster_path}</p>
-								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} />
-								<p>release_date : {item.release_date}</p>
-								<p>genre_ids : {item.genre_ids}</p>
-								<p>overview : {item.overview}</p>
-								<p>vote_average : {item.vote_average}</p>
-								<hr />
-								<br />
-							</div>
-						)
-					}
-				)
 
+			{nameToSearch &&
+				<div>
+				<h1>Search Results</h1>
+				{nameToSearch && searchResults && searchResults.map((movie, idx) => {
+					return (
+						<article key={uuidv4()} className={s.item}>
+							<img
+								data-value={movie.id}
+								onClick={redirectToDetail}
+								src={`${configData.IMG_URL}${movie.poster_path}`}
+								alt=""
+							/>
+							<p>
+								{movie.release_date?.split('-')[0]} - {movieGenres[idx]?.join(', ')}
+							</p>
+							<h2>{movie.title}</h2>
+						</article>
+					);
+				})}
+					{nameToSearch && searchResults && !searchResults.length &&
+						<div>
+							<h3>Wir haben diesen Film nicht!</h3>
+							<p>
+								leider haben wir keinen Film, der <strong>{nameToSearch}</strong> heißt. Falls es diesen Film wirklich
+								gibt, schreiben sie uns gerne eine Email.
+							</p>
+							<a href="mailto:FilmDatenBank@fakeEmailBitteNixSenden.com">Email Us</a>
+						</div>
+					}
+				</div>
 			}
 
 		</>
