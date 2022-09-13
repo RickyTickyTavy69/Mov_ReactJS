@@ -1,0 +1,46 @@
+.detail__container {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+	gap: 0px 0px;
+	grid-template-areas:
+		'details__poster details__release details__release__data'
+		'details__poster details__genres details__genres__data'
+		'details__poster details__overview details__overview__data'
+		'details__poster details__average details__average__data'
+		'details__poster details__trailer details__trailer'
+		'details__poster details__trailer--data details__trailer--data';
+}
+.release {
+	grid-area: details__release;
+}
+.release__data {
+	grid-area: details__release__data;
+}
+.genres {
+	grid-area: details__genres;
+}
+.genres__data {
+	grid-area: details__genres__data;
+}
+.overview {
+	grid-area: details__overview;
+}
+.overview__data {
+	grid-area: details__overview__data;
+}
+.average {
+	grid-area: details__average;
+}
+.average__data {
+	grid-area: details__average__data;
+}
+.watch {
+	grid-area: details__trailer;
+}
+.trailer {
+	grid-area: details__trailer--data;
+}
+.poster {
+	grid-area: details__poster;
+}
