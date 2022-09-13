@@ -1,44 +1,43 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import configData from "../../config.json";
 import s from "./Home.module.css";
-import useGetGenres from "../../hooks/useGetGenre";
+import useGetGenre from "../../hooks/useGetGenre";
+import { v4 as uuidv4 } from 'uuid';
+import {useNavigate} from "react-router-dom";
+import MovieDetail from "../MovieDetails/MovieDetail";
+
+
+import genreContext from "../../context/context";
 
 const Home = () => {
 
     const [popularMovies, setPopularMovies] = useState([]);
     const [movieGenres, setMovieGenres] = useState([]);
-    const getGenre = useGetGenres();
+    const genres = useContext(genreContext).genresArray;
+    const getGenre = useGetGenre();
+    //const navigate = useNavigate();
 
+    const redirectToDetail = (e) => {
+        console.log("redirect", e.target.dataset.value);
+        //navigate("/")
+    }
+
+    useEffect(() => {           // mit length wird geprüft, dass die Daten vom fetch da sind und es keine leere Array sind.
+        if(genres.length && popularMovies.length){
+            let genreList = getGenre(genres, popularMovies);
+            setMovieGenres(genreList);
+        }
+    }, [genres, popularMovies]);
 
 
     useEffect( () => {
-
         const getMovies = async () => {
             const response = await fetch(configData["API_LINK"]);
             const data = await response.json();
-            console.log("data", data.results);
+            console.log("results", data.results);
             setPopularMovies(data.results);
-
-            let genres = [];
-            data.results.forEach((movie) => {
-                console.log("genre_id", movie.genre_ids);
-                let movieGenres = [];
-                movie.genre_ids.forEach((id) => {
-                    let genre = getGenre(id);
-                    console.log("genre hier", genre);
-                    movieGenres.push(genre);
-                })
-                console.log("moviegenres", movieGenres);
-                genres.push(movieGenres);
-            })
-            console.log("all genres", genres);
-            setMovieGenres(genres);
         }
-
         getMovies();
-
-
-
     }, [])
 
 
@@ -46,17 +45,17 @@ const Home = () => {
     return (
         <>
             {<section className={s.movies}>
-            {popularMovies && movieGenres && popularMovies.map((movie, idx) => {
-
-                return(
-                    <article className={s.item}>
-                        <img src={`${configData.IMG_URL}${movie.poster_path}`} alt=""/>
-                        <p>{movie.release_date.split("-")[0]}</p>
-                        <p>{movieGenres[idx].toString()}</p>
-                    </article>
-                )
-            })}
-        </section>}
+                <h1>Popular Movies</h1>
+                {popularMovies && movieGenres.length && popularMovies.map((movie, idx) => {
+                    return(
+                        <article key={uuidv4()} className={s.item}>
+                            <img data-value={movie.id} onClick={redirectToDetail} src={`${configData.IMG_URL}${movie.poster_path}`} alt=""/>
+                            <p>{movie.release_date.split("-")[0]} - {movieGenres[idx].join(", ")}</p>
+                            <h2>{movie.title}</h2>
+                        </article>
+                    )
+                })}
+            </section>}
         </>
     )
 }
