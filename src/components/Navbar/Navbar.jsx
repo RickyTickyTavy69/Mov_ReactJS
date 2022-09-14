@@ -4,7 +4,7 @@ import GenreContext from '../../context/context';
 
 
 const Navbar = (props) => {
-	const { setNameToSearch } = useContext(GenreContext);
+	const { setNameToSearch, nameToSearch } = useContext(GenreContext);
 	const navigate = useNavigate();
 	const path = window.location.pathname.split("/")[1];
 
@@ -13,10 +13,18 @@ const Navbar = (props) => {
 		path === "detail" && navigate("/");
 	}
 
+	const redirectToHome = (e) => {
+		e.preventDefault();
+		console.log("redirect to Home");
+		setNameToSearch("");
+		path === "detail" && navigate("/");
+	}
+
 
 	return (
 		<nav className="navigation-grid">
-			<NavLink className="navigation__link" to="/">
+			{/*Den Link am besten in ein div umbauen und dann nur den cursor: pointer dazu*/}
+			<NavLink onClick={(e) => redirectToHome(e)} className="navigation__link" to="/">
 				<h1 className="navigation__text--white">
 					<span className="navigation__text--color">.</span>Mov
 				</h1>
@@ -24,6 +32,7 @@ const Navbar = (props) => {
 			<section className="search">
 				<button className="search__button"></button>
 				<input
+					value={nameToSearch}
 					className="search__input"
 					type="text"
 					placeholder="Search something here"

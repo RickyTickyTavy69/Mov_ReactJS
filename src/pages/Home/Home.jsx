@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import genreContext from '../../context/context';
 import GenreContext from '../../context/context';
+import no_poster from "../../assets/images/no_poster.jpg";
 
 const Home = () => {
 	const [popularMovies, setPopularMovies] = useState([]);
@@ -65,8 +66,10 @@ const Home = () => {
 
 	return (
 		<>
-			<h2 className="home__heading">Popular Movies</h2>
+
 			{!nameToSearch && (
+				<>
+				<h2 className="home__heading">Popular Movies</h2>
 				<section className="home-grid">
 					{popularMovies &&
 						movieGenres.length &&
@@ -78,7 +81,7 @@ const Home = () => {
 										className="home__image"
 										data-value={movie.id}
 										onClick={redirectToDetail}
-										src={`${configData.IMG_URL}${movie.poster_path}`}
+										src={movie.poster_path? `${configData.IMG_URL}${movie.poster_path}`: no_poster}
 										alt=""
 									/>
 									<p className="home__text--thin">
@@ -89,7 +92,9 @@ const Home = () => {
 							);
 						})}
 				</section>
+				</>
 			)}
+
 
 			{nameToSearch && (
 				<section>
@@ -104,7 +109,7 @@ const Home = () => {
 										className="home-search__image"
 										data-value={movie.id}
 										onClick={redirectToDetail}
-										src={`${configData.IMG_URL}${movie.poster_path}`}
+										src={movie.poster_path? `${configData.IMG_URL}${movie.poster_path}`: no_poster}
 										alt=""
 									/>
 									<p className="home-search__text--thin">
