@@ -147,7 +147,8 @@ a {
 
 .home-item {
 }
-
+.home__rating {
+}
 .home__image {
 	width: 100%;
 	overflow: hidden;
@@ -163,6 +164,32 @@ a {
 .home__text--white {
 	font-size: 18px;
 	line-height: 27.1px;
+}
+
+/* home-search */
+.home-search__heading {
+}
+.home-search-grid {
+}
+.home-search-item {
+}
+.home-search__image {
+}
+.home-search__rating {
+}
+.home-search__text--thin {
+}
+.home-search__text--white {
+}
+
+/* search no result */
+.search-nores {
+}
+.search-nores__heading {
+}
+.search-nores__text {
+}
+.search-nores__link {
 }
 
 /* page - detail */
