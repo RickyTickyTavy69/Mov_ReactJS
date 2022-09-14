@@ -18,7 +18,7 @@ const Detail = () => {
 				setTrailerLink(videoLink);
 			} else {
 				setHasTrailer(false);
-				console.log('kein lInk für Youtube Trainer');
+				console.log('kein lInk für Youtube Trailer');
 			}
 		}
 	}

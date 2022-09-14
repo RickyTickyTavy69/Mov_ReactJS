@@ -32,17 +32,20 @@ const Home = () => {
 				setSearchResults(data.results);
 			}
 		};
-		getSearchResults();
-
+		if(nameToSearch){
+			getSearchResults();
+		}
+		console.log("name to search set", nameToSearch)
 	}, [nameToSearch]);
 
 	useEffect(() => {
 		// mit length wird geprüft, dass die Daten vom fetch da sind und es keine leere Array sind.
 		if (genres.length && popularMovies.length) {
+			console.log("genres, popularmovies", genres, popularMovies);
 			let genreList = getGenre(genres, popularMovies);
+			console.log("genres, popularmovies, genreList", genreList);	// это точно правильно!!!!
 			setMovieGenres(genreList);
 		}
-		console.log('pop movies', popularMovies);
 	}, [genres, popularMovies]);
 
 	useEffect(() => {
@@ -62,7 +65,7 @@ const Home = () => {
 			setPopularMovies(data.results);
 		};
 		getMovies();
-	}, []);
+	}, [nameToSearch]);
 
 	return (
 		<>

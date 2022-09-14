@@ -16,7 +16,7 @@ const Navbar = (props) => {
 	const redirectToHome = (e) => {
 		e.preventDefault();
 		console.log("redirect to Home");
-		setNameToSearch("");
+		setNameToSearch("");						// nach dem leeren des search muss man irgendwie nochmal ein mount erzwingen.
 		path === "detail" && navigate("/");
 	}
 
