@@ -26,12 +26,13 @@ const Home = () => {
 				`https://api.themoviedb.org/3/search/movie?api_key=3f5bf13c3624e5013d3c11da8421e497&query=${nameToSearch}`
 			);
 			const data = await response.json();
-			console.log('results data', data);
+			console.log('search results data', data);
 			if (!data.errors) {
 				setSearchResults(data.results);
 			}
 		};
 		getSearchResults();
+
 	}, [nameToSearch]);
 
 	useEffect(() => {
@@ -72,7 +73,7 @@ const Home = () => {
 						popularMovies.map((movie, idx) => {
 							return (
 								<article className="home-item" key={uuidv4()}>
-									<p className="home__rating">TODO Variable Artem (rating)</p>
+									<p className="home__rating">{movie.vote_average}</p>
 									<img
 										className="home__image"
 										data-value={movie.id}
@@ -95,11 +96,10 @@ const Home = () => {
 					<h2 className="home-search__heading">Search Results</h2>
 					{nameToSearch &&
 						searchResults &&
-						searchResults.map((movie, idx) => {
-							<section className="home-search-grid">
-								return (
-								<article className="home-search-item" key={uuidv4()}>
-									<p className="home-search__rating">TODO Variable Artem (rating)</p>
+						<section className="home-search-grid">
+							{searchResults.map((movie, idx) => {
+							return (<article className="home-search-item" key={uuidv4()}>
+									<p className="home-search__rating">{movie.vote_average}</p>
 									<img
 										className="home-search__image"
 										data-value={movie.id}
@@ -111,10 +111,10 @@ const Home = () => {
 										{movie.release_date?.split('-')[0]} - {movieGenres[idx]?.join(', ')}
 									</p>
 									<h3 className="home-search__text--white">{movie.title}</h3>
-								</article>
-								);
-							</section>;
+								</article>)
 						})}
+						</section>
+					}
 					{nameToSearch && searchResults && !searchResults.length && (
 						<section className="search-nores">
 							<h3 className="search-nores__heading">Wir haben diesen Film nicht!</h3>

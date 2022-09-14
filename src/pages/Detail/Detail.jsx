@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import configData from '../../config.json';
 
+
 const Detail = () => {
 	const params = useParams();
 	const [movieData, setMovieData] = useState({});
