@@ -41,6 +41,8 @@ a {
 	grid-area: navigation__link;
 	padding-left: 5vw;
 	transition: 0.3s;
+	/* 15.09.2022 Pointer Logo */
+	cursor: pointer;
 }
 
 .navigation__link:hover,
@@ -71,6 +73,13 @@ a {
 	gap: 0px 0px;
 	grid-template-areas: 'footer__link footer__link--imprint footer__social . .';
 	align-items: center;
+	/* 15.09.2022 footer */
+	/*
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	*/
 }
 
 .footer__link {
@@ -95,8 +104,7 @@ a {
 	grid-area: footer__social;
 }
 
-.social__link {
-}
+.social__link {}
 
 .social__icon {
 	margin-left: 33px;
@@ -206,6 +214,8 @@ a {
 	height: 339px;
 	overflow: hidden;
 	width: 226px;
+	/* 15.09.2022 Cursor pointer for images*/
+	cursor: pointer;
 }
 
 .home__image:hover,
@@ -241,17 +251,13 @@ a {
 }
 
 /* search no result */
-.search-nores {
-}
+.search-nores {}
 
-.search-nores__heading {
-}
+.search-nores__heading {}
 
-.search-nores__text {
-}
+.search-nores__text {}
 
-.search-nores__link {
-}
+.search-nores__link {}
 
 /* page - detail */
 .details__heading {
@@ -358,6 +364,7 @@ a {
 }
 
 @media only screen and (max-width: 600px) {
+
 	/* navigation */
 	.navigation-grid {
 		grid-template-columns: 1fr;
@@ -370,8 +377,8 @@ a {
 
 	/* search */
 	.search {
-		margin: auto;
 		width: 93vw;
+		margin: 24px auto;
 	}
 
 	/* page - home */
@@ -393,4 +400,71 @@ a {
 		height: 78%;
 		width: 82vw;
 	}
+
+	/* 15.09.2002 - Detail page */
+	.details__grid {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.details__heading {
+		margin: 29px 0 5px 0;
+	}
+
+	.details__poster {
+		width: auto;
+		height: auto;
+	}
+
+	.details__release,
+	.details__genres,
+	.details__overview,
+	.details__average,
+	.details__trailer {
+		font-size: 1.6rem;
+	}
+
+	/* Um Abstand zwischen Average Voting und Zahl zu reduzieren  */
+	.details__average {
+		margin-bottom: 0px;
+
+	}
+
+	.details__genres--data,
+	.details__release--data,
+	.details__overview--data,
+	.details__average--data {
+		font-size: 1.1rem;
+	}
+
+	.details__trailer {
+		margin-bottom: 1vh;
+	}
+
+	/* Trailer */
+	.details__trailer {
+		width: auto;
+		height: auto;
+	}
+
+}
+
+/* Button Kein Trailer zu sehen? */
+
+main>article>section>div>button {
+	width: 178px;
+	height: 40px;
+	cursor: pointer;
+	color: #fff;
+	background-color: #24323f;
+	border: 1px solid #fff;
+	border-radius: 8rem;
+	font-family: 'Roboto', sans-serif;
+}
+
+main>article>section>div>button:hover {
+	color: #fff;
+	/*background-color: #21e18c;*/
+	border: 1px solid #21e18c;
+	color: #21e18c;
 }
