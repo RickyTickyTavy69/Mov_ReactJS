@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import configData from '../../config.json';
-import no_poster from "../../assets/images/no_poster.jpg";
+import no_poster from '../../assets/images/no_poster.jpg';
 
 const Detail = () => {
 	const params = useParams();
@@ -11,7 +11,7 @@ const Detail = () => {
 	const [hasTrailer, setHasTrailer] = useState(true);
 
 	const changeTrailer = () => {
-		if (allTrailerLinks.length > 1){
+		if (allTrailerLinks.length > 1) {
 			if (allTrailerLinks[1].site === 'YouTube') {
 				const videoLink = `https://www.youtube.com/embed/${allTrailerLinks[1].key}`;
 				setTrailerLink(videoLink);
@@ -20,7 +20,7 @@ const Detail = () => {
 				console.log('kein lInk für Youtube Trailer');
 			}
 		}
-	}
+	};
 
 	useEffect(() => {
 		const getMovie = async () => {
@@ -28,7 +28,7 @@ const Detail = () => {
 				`https://api.themoviedb.org/3/movie/${params.id}?api_key=dd7ac1f247ec64e83419d95ecc19b3b3`
 			);
 			const data = await response.json();
-			console.log("data @ Detail", data);
+			console.log('data @ Detail', data);
 			setMovieData(data);
 		};
 		getMovie();
@@ -45,7 +45,7 @@ const Detail = () => {
 				setHasTrailer(false);
 			} else {
 				setAllTrailerLinks(data.results);
-				console.log("@ Detail trailer results", data.results);
+				console.log('@ Detail trailer results', data.results);
 				if (data.results[0].site === 'YouTube') {
 					const videoLink = `https://www.youtube.com/embed/${data.results[0].key}`;
 					setTrailerLink(videoLink);
@@ -67,7 +67,7 @@ const Detail = () => {
 						<img
 							className="details__poster"
 							alt={`${movieData.title} poster`}
-							src={movieData.poster_path? `${configData.IMG_URL}${movieData.poster_path}`: no_poster}
+							src={movieData.poster_path ? `${configData.IMG_URL}${movieData.poster_path}` : no_poster}
 						/>
 						<p className="details__release">Release Date</p>
 						<p className="details__release--data">{movieData.release_date}</p>
@@ -87,23 +87,25 @@ const Detail = () => {
 						<section>
 							{hasTrailer && (
 								<div>
-								<iframe
-									className="details__trailer--data"
-									width="560"
-									height="315"
-									src={trailerLink}
-									title="YouTube video player"
-									frameBorder="0"
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-									allowFullScreen
-								></iframe>
-								<button onClick={changeTrailer} style={{padding: "2% 4%", cursor: "pointer"}}>Kein Trailer zu sehen?</button>
+									<iframe
+										className="details__trailer--data"
+										width="560"
+										height="315"
+										src={trailerLink}
+										title="YouTube video player"
+										frameBorder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+										allowFullScreen
+									></iframe>
+									<button className="details__trailer__button" onClick={changeTrailer}>
+										Kein Trailer zu sehen?
+									</button>
 								</div>
 							)}
 							{!hasTrailer && (
-								<p>
+								<p className="details__trailer__text">
 									Leider wurden keine Trailer zu diesem Film gefunden.... Sie können gerne bei Google selber
-									suchen ;)
+									suchen ;
 								</p>
 							)}
 						</section>
