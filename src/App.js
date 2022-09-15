@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
 	const [genresArray, setGenresArray] = useState([]);
 	const getGenresArray = useGetGenresArray();
-	const [nameToSearch, setNameToSearch] = useState('');
+	const [nameToSearch, setNameToSearch] = useState();
 
 	useEffect(() => {
 		const getGenres = async () => {
