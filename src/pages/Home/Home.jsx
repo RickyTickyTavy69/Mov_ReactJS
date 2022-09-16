@@ -66,7 +66,7 @@ const Home = () => {
 
 	return (
 		<>
-			{!nameToSearch && (
+			{!nameToSearch &&
 				<>
 					<h2 className="home__heading">Popular Movies</h2>
 					<section className="home-grid">
@@ -91,8 +91,8 @@ const Home = () => {
 								);
 							})}
 					</section>
-				</>
-			)}
+				</>}
+
 
 			{nameToSearch && (
 				<section>
@@ -103,10 +103,10 @@ const Home = () => {
 							{searchResults.map((movie, idx) => {
 								return (
 									<article className="home-search-item" key={uuidv4()}>
-										<p className="home-search__rating">{movie.vote_average}</p>
+										<p className="home-search__rating">{movie?.vote_average}</p>
 										<img
 											className="home-search__image"
-											data-value={movie.id}
+											data-value={movie?.id}
 											onClick={redirectToDetail}
 											src={movie.poster_path ? `${configData.IMG_URL}${movie.poster_path}` : no_poster}
 											alt=""
@@ -114,7 +114,7 @@ const Home = () => {
 										<p className="home-search__text--thin">
 											{movie.release_date?.split('-')[0]} - {movieGenres[idx]?.join(', ')}
 										</p>
-										<h3 className="home-search__text--white">{movie.title}</h3>
+										<h3 className="home-search__text--white">{movie?.title}</h3>
 									</article>
 								);
 							})}
@@ -156,8 +156,6 @@ const Home = () => {
 									</article>
 						</section>
 				</div>
-
-			}
 
 			}
 		</>

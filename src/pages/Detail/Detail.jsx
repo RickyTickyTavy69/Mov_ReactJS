@@ -136,7 +136,7 @@ const Detail = () => {
 							{!hasTrailer && (
 								<p className="details__trailer__text">
 									Leider wurden keine Trailer zu diesem Film gefunden.... Sie können gerne bei Google selber
-									suchen ;
+									suchen ;)
 								</p>
 							)}
 						</section>
