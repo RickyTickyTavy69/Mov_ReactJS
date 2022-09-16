@@ -252,7 +252,7 @@ a {
 
 /* search no result */
 .search-nores {
-	height: 48vh;
+	height: calc(100vh - 142px * 2);
 	overflow: hidden;
 	padding-left: 5vw;
 	margin-top: -18vh;
@@ -275,6 +275,7 @@ a {
 	padding: 2px 50px;
 	margin-top: 20px;
 	transition: 1s;
+	font-family: "Roboto", sans-serif;
 }
 
 .search-nores__link:hover {

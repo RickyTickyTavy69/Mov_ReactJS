@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import configData from '../../config.json';
 import no_poster from '../../assets/images/no_poster.jpg';
+import useRequest from "../../hooks/useRequest";
 
 const Detail = () => {
 	const params = useParams();
@@ -9,6 +10,8 @@ const Detail = () => {
 	const [trailerLink, setTrailerLink] = useState('');
 	const [allTrailerLinks, setAllTrailerLinks] = useState([]);
 	const [hasTrailer, setHasTrailer] = useState(true);
+	const request = useRequest();
+
 
 	const changeTrailer = () => {
 		if (allTrailerLinks.length > 1) {
@@ -24,10 +27,7 @@ const Detail = () => {
 
 	useEffect(() => {
 		const getMovie = async () => {
-			const response = await fetch(
-				`https://api.themoviedb.org/3/movie/${params.id}?api_key=dd7ac1f247ec64e83419d95ecc19b3b3`
-			);
-			const data = await response.json();
+			const data = await request(`https://api.themoviedb.org/3/movie/${params.id}?api_key=dd7ac1f247ec64e83419d95ecc19b3b3`)
 			console.log('data @ Detail', data);
 			setMovieData(data);
 		};
@@ -36,11 +36,7 @@ const Detail = () => {
 
 	useEffect(() => {
 		const getMovie = async () => {
-			const response = await fetch(
-				`https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=dd7ac1f247ec64e83419d95ecc19b3b3`
-			);
-			const data = await response.json();
-			console.log('useEffect Detail data', data);
+			const data = await request(`https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=dd7ac1f247ec64e83419d95ecc19b3b3`);
 			if (!data.results.length) {
 				setHasTrailer(false);
 			} else {

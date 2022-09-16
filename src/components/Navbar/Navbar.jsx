@@ -9,7 +9,7 @@ const Navbar = (props) => {
 	const path = window.location.pathname.split("/")[1];
 
 	const changeNameToSearch = (e) => {
-		setNameToSearch(e.target.value)
+		setNameToSearch(e.target.value);
 		path === "detail" && navigate("/");
 	}
 

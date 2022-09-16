@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import configData from '../../config.json';
 import useGetGenre from '../../hooks/useGetGenre';
+import useRequest from "../../hooks/useRequest";
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import genreContext from '../../context/context';
@@ -15,6 +16,7 @@ const Home = () => {
 	const [searchResults, setSearchResults] = useState([]);
 	const getGenre = useGetGenre();
 	const navigate = useNavigate();
+	const request = useRequest();
 
 	const redirectToDetail = (e) => {
 		navigate(`/detail/${e.target.dataset.value}`);
@@ -22,11 +24,8 @@ const Home = () => {
 
 	useEffect(() => {
 		const getSearchResults = async () => {
-			const response = await fetch(
-				`https://api.themoviedb.org/3/search/movie?api_key=3f5bf13c3624e5013d3c11da8421e497&query=${nameToSearch}`
-			);
-			const data = await response.json();
-			console.log('search results data', data);
+			const url = `https://api.themoviedb.org/3/search/movie?api_key=3f5bf13c3624e5013d3c11da8421e497&query=${nameToSearch}`;
+			const data = await request(url);
 			if (!data.errors) {
 				setSearchResults(data.results);
 			}
@@ -34,15 +33,15 @@ const Home = () => {
 		if (nameToSearch) {
 			getSearchResults();
 		}
-		console.log('name to search set', nameToSearch);
+
 	}, [nameToSearch]);
 
 	useEffect(() => {
 		// mit length wird geprüft, dass die Daten vom fetch da sind und es keine leere Array sind.
 		if (genres.length && popularMovies.length) {
-			console.log('genres, popularmovies', genres, popularMovies);
+
 			let genreList = getGenre(genres, popularMovies);
-			console.log('genres, popularmovies, genreList', genreList); // это точно правильно!!!!
+
 			setMovieGenres(genreList);
 		}
 	}, [genres, popularMovies]);
@@ -52,15 +51,14 @@ const Home = () => {
 		if (genres.length && searchResults.length) {
 			let genreList = getGenre(genres, searchResults);
 			setMovieGenres(genreList);
-			console.log('@ UseEffect search', genreList);
+
 		}
-		console.log('searchResults', searchResults);
+
 	}, [genres, searchResults]);
 
 	useEffect(() => {
 		const getMovies = async () => {
-			const response = await fetch(configData['API_LINK']);
-			const data = await response.json();
+			const data = await request(configData['API_LINK']);
 			setPopularMovies(data.results);
 		};
 		getMovies();
