@@ -26,12 +26,16 @@ const Detail = () => {
 	};
 
 	useEffect(() => {
+		if(params.id === "Supercode"){
+			setMovieData("Supercode");
+		} else{
 		const getMovie = async () => {
 			const data = await request(`https://api.themoviedb.org/3/movie/${params.id}?api_key=dd7ac1f247ec64e83419d95ecc19b3b3`)
 			console.log('data @ Detail', data);
 			setMovieData(data);
 		};
 		getMovie();
+		}
 	}, [params]);
 
 	useEffect(() => {
@@ -56,6 +60,37 @@ const Detail = () => {
 
 	return (
 		<>
+			{movieData === "Supercode" &&
+				<main>
+					<h2 className="details__heading">The Bizarre Adventure of Supercoders</h2>
+					<article className="details__grid">
+						<img
+							className="details__poster"
+							alt={`poster`}
+							src={no_poster}
+						/>
+						<p className="details__release">Release Date</p>
+						<p className="details__release--data">2022</p>
+						<p className="details__genres">Genres</p>
+						<p className="details__genres--data">
+							Action, Documentary, Adventure, Comedy
+						</p>
+						<p className="details__overview">Overview</p>
+						<p className="details__overview--data">The Supercoders have struggeled a lot of time and went tru
+						a lot of difficult thinks for become good front end developers
+						</p>
+						<p className="details__average">Average Voting</p>
+						<p className="details__average--data">100</p>
+						<p className="details__trailer">Watch Trailer</p>
+						<section>
+								<p className="details__trailer__text">
+									Leider wurden keine Trailer zu diesem Film gefunden.... Sie können gerne bei Google selber
+									suchen ;
+								</p>
+						</section>
+					</article>
+				</main>
+			}
 			{movieData.genres && (
 				<main>
 					<h2 className="details__heading">{movieData.title}</h2>

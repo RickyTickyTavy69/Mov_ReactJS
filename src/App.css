@@ -494,4 +494,16 @@ a {
 		width: auto;
 		height: auto;
 	}
+
+	.search {
+		margin: 24px auto;
+		width: 300px;
+	}
+
+	.search__input:focus-visible {
+		outline: none;
+		border: 2px solid #21e18c;
+		padding: 14px 33px;
+		border-radius: 50px;
+	}
 }

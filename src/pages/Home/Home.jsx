@@ -96,7 +96,8 @@ const Home = () => {
 
 			{nameToSearch && (
 				<section>
-					<h2 className="home-search__heading">Search Results</h2>
+					{searchResults.length && <h2 className="home-search__heading">Search Results</h2>}
+					{!searchResults.length && nameToSearch !== "Supercode" && <h2 className="home-search__heading">No Search Results</h2>}
 					{nameToSearch && searchResults && (
 						<section className="home-search-grid">
 							{searchResults.map((movie, idx) => {
@@ -120,7 +121,7 @@ const Home = () => {
 						</section>
 					)}
 
-					{nameToSearch && searchResults && !searchResults.length && (
+					{nameToSearch && searchResults && !searchResults.length && nameToSearch !== "Supercode" && (
 						<article className="search-nores" key={uuidv4()}>
 							<h3 className="search-nores__heading">Entschuldigung! </h3>
 							<p className="search-nores__text">
@@ -135,6 +136,30 @@ const Home = () => {
 					)}
 				</section>
 			)}
+			{nameToSearch === "Supercode" &&
+				<div>
+					<h2 className="home-search__heading">Search Results</h2>
+						<section className="home-search-grid">
+									<article className="home-search-item">
+										<p className="home-search__rating">100</p>
+										<img
+											className="home-search__image"
+											onClick={redirectToDetail}
+											src={no_poster}
+											data-value="Supercode"
+											alt=""
+										/>
+										<p className="home-search__text--thin">
+											2022
+										</p>
+										<h3>The bizarre Adventure of Supercoders</h3>
+									</article>
+						</section>
+				</div>
+
+			}
+
+			}
 		</>
 	);
 };
